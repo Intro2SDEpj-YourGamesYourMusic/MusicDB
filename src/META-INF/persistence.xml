@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="SpotiDB">
+	
+		<class>project.model.User</class>
+		<class>project.model.Artist</class>
+	 	<class>project.model.Song</class>
+	 	<class>project.model.User_likes</class>
+	 	 <properties>
+       <!--   <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/spotifydb" />
+            <property name="javax.persistence.jdbc.user" value="*CENSURED*" />
+            <property name="javax.persistence.jdbc.password" value="*CENSURED*" />-->
+<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+<property name="javax.persistence.jdbc.url" value="jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7243449" />
+<property name="javax.persistence.jdbc.user" value="*CENSURED*" />
+<property name="javax.persistence.jdbc.password" value="*CENSURED*" />
+      
+      
+            <property name="eclipselink.logging.level" value="INFO" />
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+<!--
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="create" /> -->
+        </properties>
+	</persistence-unit>
+</persistence>
