@@ -22,8 +22,8 @@ public class User_likes implements Serializable {
     @JoinColumn(name="idArtist",referencedColumnName="idArtist")
     private Artist artist;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idSong")
+    @ManyToOne
+    @JoinColumn(name="idSong",referencedColumnName="idSong")
     private Song song;
     
     @Column(name="rating")
