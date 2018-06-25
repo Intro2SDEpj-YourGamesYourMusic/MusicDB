@@ -18,7 +18,7 @@ Initially the **CentralLogicClient.java** (in client) was used to test locally t
 Model contains four models used as JPA tables on the database:  
 **Artist.java** contains artists with an unique ID provided by Spotify and a name.  
 **Song.java** contains songs with a unique ID provided by Spotify, a song name and an artist name (the two mentioned tables are NOT linked).  
-**User.java** contains the users using the project. There is only one field, ID, which is given by Telegram automatically.  
+**User.java** contains the users using the project. There are two fields, ID and chatID, which are related to Telegram to identify a user and the chat where the comunication between the bot and the user is happening.  
 **User_likes.java** is the most interesting table, combining in a many-to-many relationship the users with artists/songs. A DB schema will be provided in the description of the project.  
 In the dao sub-package the **SpotiDAO.java** class is implemented, which is the DAO for this layer. Basically there are only the crud operations for each model: getById, getAll, save, update, remove for Artist/Song/User/User_likes.  
 Test.model contains a JUnit for each model to test if the crud operations of the DAO worked on a remote database with JPA.
@@ -30,6 +30,7 @@ The implemented methods:
 -getSongsFromArtist returns 5 popular songs from an artist (which is a particular Spotify API function, explained in SpotifyLayer).  
 -getLiked/getDisliked/Songs/Artists: returns all liked or disliked songs or artists given a user.
 -getRecommendation: returns 5 recommended songs for a user.    
+-initSong: a method to give a new user the choice of 5 predefined songs of different genres to have some background for eventual future recommendation requests.
 The implementation of these methods (contained in **CentralLogicImpl.java**) are explained in the following chapter.  
 **build.xml** and **ivy.xml** are almost the same used during the soap classes.    
 In WebContent/WEB-INF/ there are two xml files **web.xml** and **sun-jaxws.xml** used to describe where the web services would be placed on heroku (/spoti). This technique was already used for the assignment3 to solve some weird errors which made disappear the web service on heroku.  
