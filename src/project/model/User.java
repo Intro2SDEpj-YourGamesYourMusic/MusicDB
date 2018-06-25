@@ -13,6 +13,8 @@ public class User implements Serializable {
     @Id // defines this attributed as the one that identifies the entity
     @Column(name="id") // maps the following attribute to a column
     private String id;
+    @Column(name="chatid")
+    private String chatId;
  // mappedBy must be equal to the name of the attribute in LifeStatus that maps this relation
     @OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     private List<User_likes> user_likes;
@@ -28,5 +30,11 @@ public class User implements Serializable {
 	}
 	public void setUser_likes(List<User_likes> user_likes) {
 		this.user_likes = user_likes;
+	}
+	public String getChatId() {
+		return chatId;
+	}
+	public void setChatId(String chatId) {
+		this.chatId = chatId;
 	}
 }
