@@ -41,13 +41,14 @@ public class CentralLogicImpl implements CentralLogic {
     }
 
 	@Override
-	public User createUser(String id) {
+	public User createUser(String id, String chatId) {
 		User u=SpotiDAO.getUserById(id);
 		if(u!=null) {
 			return u;
 		}
 		u=new User();
 		u.setId(id);
+		u.setChatId(chatId);
 		SpotiDAO.saveUser(u);
 		return SpotiDAO.getUserById(id);
 	}
@@ -433,6 +434,18 @@ public class CentralLogicImpl implements CentralLogic {
 			returnList.add(songDB_fromAPI(s));
 		}
 		System.out.println("i'm about to return "+returnList.size()+" songs");
+		return returnList;
+	}
+
+	@Override
+	public List<Song> initSongs() {
+		List<Song> returnList=new ArrayList<Song>();
+		returnList.add(getSong("Wake me up"));
+		returnList.add(getSong("Country Roads"));
+		returnList.add(getSong("Mockingbird"));
+		returnList.add(getSong("Bohemian Rhapsody"));
+		returnList.add(getSong("Girls Like You"));
+		
 		return returnList;
 	}
 }

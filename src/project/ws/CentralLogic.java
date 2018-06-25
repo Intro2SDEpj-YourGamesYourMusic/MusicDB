@@ -17,7 +17,7 @@ public interface CentralLogic{
     @WebMethod(operationName="initDB") @WebResult(name="string") public String initDB();
     
     //user operations
-    @WebMethod(operationName="createUser") @WebResult(name="user") public User createUser(String id);
+    @WebMethod(operationName="createUser") @WebResult(name="user") public User createUser(String id, String chatId);
     @WebMethod(operationName="getUser") @WebResult(name="user") public User getUser(String id);
     @WebMethod(operationName="deleteUser") @WebResult(name="int") public int deleteUser(User u);
     @WebMethod(operationName="getAllUser") @WebResult(name="users") public List<User> getAllUser();
@@ -55,4 +55,5 @@ public interface CentralLogic{
     @WebMethod(operationName="getLikedArtists") @WebResult(name="artists") List<Artist> getLikedArtists (User u);
     @WebMethod(operationName="getDislikedArtists") @WebResult(name="artists") List<Artist> getDislikedArtists (User u);
     @WebMethod(operationName="getRecommendation") @WebResult(name="songs") List<Song> getRecommendation(User u);
+    @WebMethod(operationName="initSongs") @WebResult(name="songs") List<Song> initSongs(); 
 }
