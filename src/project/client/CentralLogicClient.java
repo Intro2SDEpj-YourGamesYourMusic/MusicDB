@@ -19,9 +19,9 @@ public class CentralLogicClient {
         //initdb
         System.out.println(centralLogic.initDB());
         //create user
-        User u1=centralLogic.createUser("abc123");
+        User u1=centralLogic.createUser("abc123", "eskeree1");
         System.out.println("Created user "+u1.getId());
-        User u2=centralLogic.createUser("def456");
+        User u2=centralLogic.createUser("def456", "eskeree2");
         System.out.println("Created user "+u2.getId());
         
         //create artist
@@ -76,7 +76,7 @@ public class CentralLogicClient {
         System.out.println("User u2 likes: "+centralLogic.getLikedSongs(u2).size()+" songs");
         System.out.println("User u2 dislikes: "+centralLogic.getDislikedSongs(u2).size()+" songs");
         
-        User myuser=centralLogic.createUser("dega93");
+        User myuser=centralLogic.createUser("dega93", "telegramchatid123");
         Artist artist1=centralLogic.getArtist("Linkin Park");
         Artist artist2=centralLogic.getArtist("Avicii");
         Artist artist3=centralLogic.getArtist("Rea Garvey");
@@ -104,6 +104,10 @@ public class CentralLogicClient {
         List<Song> myuser_recommendations=centralLogic.getRecommendation(myuser);
         for(Song recSong:myuser_recommendations) {
         	System.out.println(recSong.getIdSong()+" "+recSong.getArtistName()+" "+recSong.getName());
+        }
+        List<Song> initList=centralLogic.initSongs();
+        for(Song s:initList) {
+        	System.out.println(s.getIdSong()+" "+s.getArtistName()+" "+s.getName());
         }
         
     }
