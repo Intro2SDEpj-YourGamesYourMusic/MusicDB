@@ -84,15 +84,16 @@ public class CentralLogicImpl implements CentralLogic {
 	@Override
 	public Artist getArtist(String name) {
 		List<Artist> artistList=SpotiDAO.getAllArtist();
+		introsde.spotifylayer.soap.ws.Artist apiArtist=api.searchArtist(name);
+		Artist foundArtist=artistDB_fromAPI(apiArtist);
 		for(Artist a : artistList) {
-			if(a.getName().equals(name)) {
-				return a;
+			if(a.getIdArtist().equals(foundArtist.getIdArtist())) {
+				return foundArtist;
 			}
 		}
-		introsde.spotifylayer.soap.ws.Artist apiArtist=api.searchArtist(name);
-		Artist a=artistDB_fromAPI(apiArtist);
-		SpotiDAO.saveArtist(a);
-		return a;	
+
+		SpotiDAO.saveArtist(foundArtist);
+		return foundArtist;	
 	}
 
 	/*
@@ -123,13 +124,14 @@ public class CentralLogicImpl implements CentralLogic {
 	@Override
 	public Song getSong(String name) {
 		List<Song> songList=SpotiDAO.getAllSong();
-		for(Song s : songList)
-			if(s.getName().equals(name))
-				return s;
 		introsde.spotifylayer.soap.ws.Song apiSong=api.searchSong(name);
-		Song s=songDB_fromAPI(apiSong);
-		SpotiDAO.saveSong(s);
-		return s;	
+		Song foundSong=songDB_fromAPI(apiSong);
+		for(Song s : songList) {
+			if(s.getIdSong().equals(foundSong.getIdSong()))
+				return foundSong;
+		}
+		SpotiDAO.saveSong(foundSong);
+		return foundSong;
 	} 
 
 	/*@Override
