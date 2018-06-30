@@ -64,6 +64,12 @@ public class CentralLogicImpl implements CentralLogic {
 
 	@Override
 	public int deleteUser(User u) {
+		List<User_likes> uLikesList=SpotiDAO.getAllUserLikes();
+		for (User_likes ul:uLikesList) {
+			if(ul.getUser().getId().equals(u)) {
+				SpotiDAO.removeUserLikes(ul);
+			}
+		}
 		SpotiDAO.removeUser(u);
 		return 1;
 	}
@@ -449,5 +455,26 @@ public class CentralLogicImpl implements CentralLogic {
 		returnList.add(getSong("Girls Like You"));
 		
 		return returnList;
+	}
+	
+		@Override
+	public Artist getArtistById(String id) {
+		List<Artist> artistList=SpotiDAO.getAllArtist();
+		for(Artist a : artistList) {
+			if(a.getIdArtist().equals(id)) {
+				return a;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Song getSongById(String id) {
+		List<Song> songList=SpotiDAO.getAllSong();
+		for(Song s : songList) {
+			if(s.getIdSong().equals(id))
+				return s;
+		}
+		return null;
 	}
 }
