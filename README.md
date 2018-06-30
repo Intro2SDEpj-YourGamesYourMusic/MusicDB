@@ -2,7 +2,7 @@
 **Heroku Host URL:** https://sdeproject-musicdb.herokuapp.com/  
 **Heroku WSDL URL:** https://sdeproject-musicdb.herokuapp.com/centrallogic?wsdl  
 **Github repositories of the project:**  
-https://github.com/Intro2SDEpj-YourGamesYourMusic
+https://github.com/Intro2SDEpj-YourGamesYourMusic  
 I worked with Mattia Buffa.  
 
 ## MusicDB
