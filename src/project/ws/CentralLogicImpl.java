@@ -66,7 +66,7 @@ public class CentralLogicImpl implements CentralLogic {
 	public int deleteUser(User u) {
 		List<User_likes> uLikesList=SpotiDAO.getAllUserLikes();
 		for (User_likes ul:uLikesList) {
-			if(ul.getUser().getId().equals(u)) {
+			if(ul.getUser().getId().equals(u.getId())) {
 				SpotiDAO.removeUserLikes(ul);
 			}
 		}
@@ -325,6 +325,10 @@ public class CentralLogicImpl implements CentralLogic {
 			song.setArtistName(a.getName());
 			songList.add(song);
 		}
+		for(Song s:songList) {
+			if(SpotiDAO.getSongById(s.getIdSong())==null)
+				SpotiDAO.saveSong(s);
+		}
 		return songList;
 	}
 
@@ -440,6 +444,11 @@ public class CentralLogicImpl implements CentralLogic {
 		System.out.println("I found "+apiSongs.size()+" songs");
 		for(introsde.spotifylayer.soap.ws.Song s:apiSongs) {
 			returnList.add(songDB_fromAPI(s));
+		}
+		for (Song foundSong:returnList) {
+			if(SpotiDAO.getSongById(foundSong.getIdSong())==null) {
+				SpotiDAO.saveSong(foundSong);
+			}
 		}
 		System.out.println("i'm about to return "+returnList.size()+" songs");
 		return returnList;
